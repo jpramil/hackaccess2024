@@ -1,0 +1,11 @@
+```{python}
+import pandas as pd
+import folium
+```
+
+Hyperparamètres
+
+```{python}
+cols_access = ['entree_balise_sonore'] # Variable d'accessibilité visée
+code_com_cible = "85294" # Commune d'intérêt
+```
