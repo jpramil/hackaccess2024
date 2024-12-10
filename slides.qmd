@@ -1,0 +1,83 @@
+---
+title: "Accessibilité des Aveugles et Malvoyants"
+subtitle: "Analyse et Proposition d'Actions"
+format: 
+  revealjs:
+    theme: simple
+    pdf: true
+transition: fade
+---
+
+## Objectifs Généraux
+
+- **Viser des handicaps moins visibles dans les données** :
+  - Ne pas se limiter au handicap moteur ou à l'accessibilité physique.
+- **Focus : accessibilité pour les aveugles et malvoyants**.
+
+---
+
+## Problématiques Identifiées
+
+### Accessibilité pour les aveugles et malvoyants
+- Importance des équipements spécifiques :
+  - Bornes sonores.
+  - Chemins tracés au sol.
+  - Personnel formé.
+- Cas d'usage : accessibilité dans le tourisme :
+  - Présence de restaurants adaptés.
+  - Présence de plages surveillées et équipées.
+- Complexité liée au nombre élevé de critères nécessaires.
+
+---
+
+## Proposition : AccessLibre
+
+### Projets en cours
+1. **Identifier les zones sous-équipées en données** :
+   - Détection des zones où AccessLibre est pauvre en établissements accessibles pour les aveugles et malvoyants.
+   - Identifier les acteurs locaux pertinents.
+   - Envoi d'e-mails d'information sur l'importance de renseigner AccessLibre.
+
+2. **Utilisation de Superset** :
+   - Création d'une interface interactive.
+   - Objectif : faciliter la recherche et la visualisation d'établissements par les utilisateurs.
+
+---
+
+## Discussions avec Julien
+
+- Points-clés évoqués :
+  - Importance des bornes sonores.
+  - Nécessité de chemins tracés au sol.
+  - Formation spécifique du personnel.
+
+---
+
+## Cas d'Usage : Tourisme
+
+### Critères à considérer
+- **Restaurants** :
+  - Adaptés aux besoins des malvoyants.
+- **Plages surveillées** :
+  - Équipements spécifiques pour faciliter l'accessibilité.
+
+---
+
+## Défis et Solutions
+
+- Complexité liée à la prise en compte de nombreux critères.
+- Approche suggérée :
+  - Priorisation des zones d'intervention.
+  - Collaboration avec des acteurs locaux pour enrichir les données.
+
+---
+
+## Conclusion
+
+- **Importance de diversifier les efforts** pour inclure les besoins des aveugles et malvoyants.
+- **Projets structurés** pour enrichir les données et les rendre accessibles :
+  - Collaboration locale.
+  - Interfaces interactives comme Superset.
+
+---
+
