@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.39">
@@ -100,28 +100,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Ce notebook est un premier pas avant transformation en application. Il nous permet de tester le (faible) niveau d’accessibilité de ce format notebook pour les personnes aveugles.</p>
+<p>Quelles règles apprises : - Le notebook n’est globalement pas très accessible - On peut quand même améliorer les choses en choisissant une langue source (pour faciliter le travail de l’aide audio de la personne aveugle) et en mettant une structure en titres/sous-titre facilitant la navigation.</p>
 <section id="preprocessing-des-données" class="level2">
 <h2 class="anchored" data-anchor-id="preprocessing-des-données">Preprocessing des données</h2>
-<div id="cell-4" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> folium</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Hyperparamètres</p>
-<div id="cell-6" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cols_access <span class="op">=</span> [<span class="st">'entree_balise_sonore'</span>] <span class="co"># Variable d'accessibilité visée</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>code_com_cible <span class="op">=</span> <span class="st">"85294"</span> <span class="co"># Commune d'intérêt</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>code_com_cible <span class="op">=</span> <span class="st">"85294"</span> <span class="co"># Commune d'intérêt</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Download data acceslibre</p>
-<div id="cell-8" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url_access_libre <span class="op">=</span> <span class="st">"https://www.data.gouv.fr/fr/datasets/r/5b0f44f2-e6ea-4a58-874d-6fe364b40342"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_accesslibre <span class="op">=</span> pd.read_csv(url_access_libre)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df_accesslibre <span class="op">=</span> pd.read_csv(url_access_libre)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/tmp/ipykernel_84462/489921021.py:2: DtypeWarning: Columns (56,67,68,69,70,71,72,73,74,79,80) have mixed types. Specify dtype option on import or set low_memory=False.
   df_accesslibre = pd.read_csv(url_access_libre)</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_accesslibre.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-8" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_accesslibre.columns</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>Index(['id', 'name', 'postal_code', 'commune', 'numero', 'voie', 'lieu_dit',
        'code_insee', 'siret', 'activite', 'contact_url', 'site_internet',
@@ -164,20 +177,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Columns selection</p>
-<div id="cell-11" class="cell" data-execution_count="5">
+<div id="cell-10" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cols_base <span class="op">=</span> [<span class="st">'id'</span>, <span class="st">'name'</span>, <span class="st">'code_insee'</span>, <span class="st">'postal_code'</span>, <span class="st">'commune'</span>, <span class="st">'numero'</span>, <span class="st">'voie'</span>, <span class="st">'lieu_dit'</span>, <span class="st">'longitude'</span>, <span class="st">'latitude'</span>, ]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_balises <span class="op">=</span> df_accesslibre[cols_base <span class="op">+</span> cols_access]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_balises <span class="op">=</span> df_accesslibre[cols_base <span class="op">+</span> cols_access]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Suppression des établissements sans information sur les balises sonores</p>
-<div id="cell-13" class="cell" data-execution_count="6">
+<div id="cell-12" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_balises <span class="op">=</span> df_balises[df_balises[<span class="st">'entree_balise_sonore'</span>].notna()]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_balises.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_balises.shape)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(65954, 11)</code></pre>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_balises[<span class="st">'entree_balise_sonore'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-13" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_balises[<span class="st">'entree_balise_sonore'</span>].value_counts()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>entree_balise_sonore
 False    63625
@@ -185,8 +207,11 @@ True      2329
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_balises</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-14" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_balises</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -371,25 +396,34 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <p>Cleaning des positions GPS</p>
-<div id="cell-17" class="cell" data-execution_count="9">
+<div id="cell-16" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir les colonnes latitude et longitude si nécessaire</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_balises[<span class="st">'longitude'</span>] <span class="op">=</span> pd.to_numeric(df_balises[<span class="st">'longitude'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df_balises[<span class="st">'latitude'</span>] <span class="op">=</span> pd.to_numeric(df_balises[<span class="st">'latitude'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Supprimer les lignes avec des coordonnées invalides</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>df_balises <span class="op">=</span> df_balises.dropna(subset<span class="op">=</span>[<span class="st">'longitude'</span>, <span class="st">'latitude'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>df_balises <span class="op">=</span> df_balises.dropna(subset<span class="op">=</span>[<span class="st">'longitude'</span>, <span class="st">'latitude'</span>])</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>On ne garde que les établissements d’une communes.</p>
-<div id="cell-19" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_balises_com <span class="op">=</span> df_balises[df_balises[<span class="st">"code_insee"</span>]<span class="op">==</span>code_com_cible]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-18" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_balises_com <span class="op">=</span> df_balises[df_balises[<span class="st">"code_insee"</span>]<span class="op">==</span>code_com_cible]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="résultats" class="level2">
 <h2 class="anchored" data-anchor-id="résultats">Résultats</h2>
 <section id="tableau-des-établissements-répertoriés-dans-accès-libre-à-la-tranche-sur-mer" class="level3">
 <h3 class="anchored" data-anchor-id="tableau-des-établissements-répertoriés-dans-accès-libre-à-la-tranche-sur-mer">Tableau des établissements répertoriés dans Accès Libre à La Tranche sur mer</h3>
-<div id="cell-22" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_balises_com[[<span class="st">"name"</span>,<span class="st">"entree_balise_sonore"</span>,<span class="st">"numero"</span>,<span class="st">"voie"</span>, <span class="st">"commune"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-21" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_balises_com[[<span class="st">"name"</span>,<span class="st">"entree_balise_sonore"</span>,<span class="st">"numero"</span>,<span class="st">"voie"</span>, <span class="st">"commune"</span>]]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
@@ -452,12 +486,15 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="12">
+<div id="cell-22" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nb_etab_equipes <span class="op">=</span> df_balises_com[<span class="st">"entree_balise_sonore"</span>].<span class="bu">sum</span>()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (nb_etab_equipes<span class="op">&gt;</span><span class="dv">0</span>):</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>nb_etab_equipes<span class="sc">}</span><span class="ss">établissements sont équipés dans la communes"</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Ps d'établissement équipé dans la commune"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Ps d'établissement équipé dans la commune"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Ps d'établissement équipé dans la commune</code></pre>
 </div>
@@ -465,7 +502,9 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="carte-des-établissements" class="level3">
 <h3 class="anchored" data-anchor-id="carte-des-établissements">Carte des établissements</h3>
-<div id="cell-25" class="cell" data-execution_count="13">
+<div id="cell-24" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>point_central <span class="op">=</span> [df_balises_com[<span class="st">'latitude'</span>].mean(), df_balises_com[<span class="st">'longitude'</span>].mean()]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>carte <span class="op">=</span> folium.Map(location<span class="op">=</span>point_central, zoom_start<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -479,7 +518,8 @@ Name: count, dtype: int64</code></pre>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> coordonnees: </span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    carte.fit_bounds(coordonnees)</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>display(carte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>display(carte)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -&gt; Trust Notebook</span><iframe srcdoc="<!DOCTYPE html>
 <html>
@@ -714,12 +754,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copié");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copié");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
